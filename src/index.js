@@ -8,6 +8,7 @@ const ERC20 = require("./erc20.js");
 const address = require("./constant/addresses.js");
 const ABI = require("./constant/abis.js");
 const tokens = require("./constant/tokens.js");
+const errorHandler = require("./errorHandler.js");
 
 module.exports = class DSA {
   /**
@@ -18,6 +19,7 @@ module.exports = class DSA {
   constructor(config) {
     if (!config) config = {};
     this.web3 = config.web3 ? config.web3 : config;
+    this.errorHandler = errorHandler;
     this.address = address;
     this.ABI = ABI;
     this.tokens = tokens;
