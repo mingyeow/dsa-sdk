@@ -26,6 +26,7 @@ module.exports = class Helpers {
   }
 
   getAddress(token) {
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     var isAddress = this.web3.utils.isAddress(token.toLowerCase());
     if (isAddress) {
       return this.web3.utils.toChecksumAddress(token.toLowerCase());

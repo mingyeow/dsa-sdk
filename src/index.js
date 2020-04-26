@@ -60,6 +60,7 @@ module.exports = class DSA {
    * @param {number|string} _d.gas (optional)
    */
   async build(_d) {
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     let _addr = await this.internal.getAddress();
     if (!_d) _d = {};
     if (!_d.authority) _d.authority = _addr;
@@ -87,6 +88,7 @@ module.exports = class DSA {
    * global number of DSAs
    */
   async count() {
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     var _c = new this.web3.eth.Contract(
       this.ABI.core.list,
       this.address.core.list
@@ -109,6 +111,7 @@ module.exports = class DSA {
    * @param _authority the ethereum address
    */
   async getAccounts(_authority) {
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     if (!_authority) _authority = await this.internal.getAddress();
     var _c = new this.web3.eth.Contract(
       this.ABI.resolvers.core,
@@ -141,6 +144,7 @@ module.exports = class DSA {
    * @param _id the DSA number
    */
   async getAuthById(_id) {
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     var _c = new this.web3.eth.Contract(
       this.ABI.resolvers.core,
       this.address.resolvers.core
@@ -163,6 +167,7 @@ module.exports = class DSA {
    * @param _id the DSA address
    */
   async getAuthByAddress(_addr) {
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     var _c = new this.web3.eth.Contract(
       this.ABI.resolvers.core,
       this.address.resolvers.core
@@ -193,6 +198,7 @@ module.exports = class DSA {
    * @param _d.gas (optional)
    */
   async cast(_d) {
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     let _addr = await this.internal.getAddress();
     let _espell = this.internal.encodeSpells(_d);
     if (!_d.to) _d.to = this.instance.address;
@@ -236,6 +242,7 @@ module.exports = class DSA {
    * @param _d.args the ABI interface
    */
   async estimateCastGas(_d) {
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     var _internal = this.internal;
     var _args = _internal.encodeSpells(_d);
     _args.push(this.instance.origin);
@@ -309,6 +316,7 @@ module.exports = class DSA {
    * to call read functions and get raw data return
    */
   async read(_s) {
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     var _c = new this.web3.eth.Contract(
       this.ABI.read[_s.protocol],
       this.address.read[_s.protocol]

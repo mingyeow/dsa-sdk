@@ -11,6 +11,7 @@ module.exports = class Token {
     this.helpers = _dsa.helpers;
     this.internal = _dsa.internal;
     this.web3 = _dsa.web3;
+    this.errorHandler = _dsa.errorHandler;
     this.dsa = _dsa;
   }
 
@@ -24,6 +25,7 @@ module.exports = class Token {
    * @param {number|string} _d.gas (optional)
    */
   async transfer(_d) {
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     let _addr = await this.internal.getAddress();
     let web3 = this.web3;
     if (!_d.token) throw new Error("'token' is not defined.");
@@ -81,6 +83,7 @@ module.exports = class Token {
    * @param {number|string} _d.gas (optional)
    */
   async approve(_d) {
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     let _addr = await this.internal.getAddress();
     let web3 = this.web3;
     if (!_d.token) throw new Error("'token' is not defined.");
@@ -121,6 +124,7 @@ module.exports = class Token {
    * @param {address} _d.from (optional)
    */
   async getAllowance(_d) {
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     let _addr = await this.internal.getAddress();
     let web3 = this.web3;
     if (!_d.token) throw new Error("'token' is not defined.");

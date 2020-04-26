@@ -45,7 +45,7 @@ module.exports = class Internal {
    * * @param _d.args
    */
   encodeMethod(_d) {
-    this.errorHandler.checkWeb3(this.web3)
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     let _co = _d.connector;
     let _m = _d.method;
     let _a = _d.args; // []
@@ -79,7 +79,7 @@ module.exports = class Internal {
    * returns the input interface required for cast()
    */
   async getAddress() {
-    this.errorHandler.checkWeb3(this.web3)
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     let address = await this.web3.eth.getAccounts();
     if (address.length == 0)
       return console.error("No ethereum address detected!!!");
@@ -95,7 +95,7 @@ module.exports = class Internal {
    * @param _d.value the call value
    */
   async estimateGas(_d) {
-    this.errorHandler.checkWeb3(this.web3)
+    this.errorHandler.checkWeb3(this.web3) // check if web3 is configured properly
     let encodeHash = this.web3.eth.abi.encodeFunctionCall(_d.abi, _d.args);
     let _web3 = this.web3;
     return new Promise(async function (resolve, reject) {
